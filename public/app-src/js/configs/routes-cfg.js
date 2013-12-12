@@ -1,8 +1,16 @@
 angular.module("config.routes", []).constant('routesCfg', [
     {
-      mapping: '/profile',
-      templateUrl: 'partials/profile' + '/?debug',
-      controller: 'ProfileCtrl'
+    	state: 'app.profile',
+      url: '/profile',
+       views: {
+        "content": { 
+          templateUrl: 'partials/profile',
+          controller: 'ProfileCtrl'
+        }
+      }
     }
   ]);
 
+
+
+ 

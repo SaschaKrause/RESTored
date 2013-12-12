@@ -2,42 +2,44 @@
   "use strict";
 
   var mainApp = angular.module('myApp', [
-    // config
-    'config.routes',
+      // libs
+      'ui.router',
 
-    // controller
-    'controller.main',
-    'controller.profile'
+      // config
+      'config.routes',
 
-    // service
+      // controller
+      'controller.main',
+      'controller.profile',
+
+      // service
+      'service.rest'
   ]);
 
 
-  mainApp.config(['$routeProvider', '$locationProvider', 'routesCfg', function ($routeProvider, $locationProvider, routesCfg) {
+  mainApp.config(['$stateProvider', '$urlRouterProvider', 'routesCfg', function ($stateProvider, $urlRouterProvider, routesCfg) {
 
     // iterate over the routes (configured as constants in config/routes-cfg.js)
     _.forEach(routesCfg, function (route) {
-      $routeProvider.
-          when(route.mapping, {
+      $stateProvider.
+          state(route.state, {
+            url: route.url,
             templateUrl: route.templateUrl,
-            controller: route.controller
+            controller: route.controller, 
+            views : route.views
           });
     });
+    
+    $urlRouterProvider.otherwise("/init"); 
 
-    $routeProvider.otherwise({
-      redirectTo: '/'
-    });
-
-    $locationProvider.html5Mode(true);
   }]);
 
-})();
 
-
-angular.module('controller.main', []).controller('MainCtrl', ["$scope", function ($scope) {
+angular.module('controller.main', []).controller('MainCtrl', ["$scope", 'RestService', function ($scope, RestService) {
   "use strict";
 
   $scope.message = "Hello World.";
+  $scope.dings = RestService.answer;
 }]);
 
 
