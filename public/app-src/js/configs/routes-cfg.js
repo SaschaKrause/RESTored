@@ -1,6 +1,6 @@
 angular.module("config.routes", []).constant('routesCfg', [
     {
-    	state: 'app.profile',
+    	state: 'profile',
       url: '/profile',
        views: {
         "content": { 

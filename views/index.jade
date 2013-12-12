@@ -6,9 +6,9 @@ block body
       div(class="container")
         ul(class="nav navbar-nav")
           li
-            a(href='profile/?debug') view1
+            a(ui-sref='profile') view1
           li
-            a(href='profile/?debug') view12
+            a(href='profile/') view12
     section(id="overview-section")
       div(class="container")
         h1
@@ -16,12 +16,10 @@ block body
         div(ng-controller="MainCtrl")
           | {{message}}
 
-  section(id="content", class="container")
-    div(ng-view)
+  section(id="content-sad", class="container")
+    div(ui-view="content", id="content")
 
-    //- loading scripts
-    //- if inProduction
-    //- libs
+  //- libs
   script(src='app-src/lib/bower/angular/angular.js')
   script(src='app-src/lib/bower/angular-ui-router/release/angular-ui-router.js')
   script(src='app-src/lib/bower/jquery/jquery.js')
@@ -34,8 +32,5 @@ block body
   //- app
   script(src='app-src/js/configs/routes-cfg.js')
   script(src='app-src/js/app.js')
-//-   else
-//-     script(src='app-build/js/lib.min.js')
-//-     script(src='app-build/js/app.min.js')
 
 

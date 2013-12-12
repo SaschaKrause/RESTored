@@ -30,7 +30,7 @@
           });
     });
     
-    $urlRouterProvider.otherwise("/init"); 
+    // $urlRouterProvider.otherwise("/init"); 
 
   }]);
 
